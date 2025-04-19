@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -56,6 +55,25 @@
         .contact-info {
             margin-top: 40px;
         }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 300px;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img.active {
+            opacity: 1;
+        }
+        .carousel img.inactive {
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
@@ -66,26 +84,35 @@
 </header>
 
 <nav>
-    <a href="#home">首页</a>
-    <a href="#about">关于我们</a>
-    <a href="#contact">联系我们</a>
+    <a href="#" onclick="showPage('home')">首页</a>
+    <a href="#" onclick="showPage('about')">关于我们</a>
+    <a href="#" onclick="showPage('contact')">联系我们</a>
 </nav>
 
-<div class="container">
-    <section id="home">
+<div id="content" class="container">
+    <section id="home" style="display: block;">
         <h2>首页</h2>
+        <div class="carousel">
+            <img src="image1.jpg" alt="Image 1" class="active">
+            <img src="image2.jpg" alt="Image 2" class="inactive">
+            <img src="image3.jpg" alt="Image 3" class="inactive">
+        </div>
         <p>这里是我们的主页，欢迎您访问！</p>
     </section>
 
-    <section id="about" class="about-us">
+    <section id="about" style="display: none;">
         <h2>关于我们</h2>
         <p>我们是一家致力于提供优质服务的企业。</p>
         <p>自成立以来，我们一直秉承着“客户至上”的原则，努力为您提供最优质的产品和服务。</p>
         <p>我们的团队由一群充满激情和经验丰富的专业人士组成，他们拥有广泛的知识和技能，能够满足您的各种需求。</p>
     </section>
 
-    <section id="contact" class="contact-info">
+    <section id="contact" style="display: none;">
         <h2>联系我们</h2>
+        <div class="carousel">
+            <img src="image4.jpg" alt="Image 4" class="active">
+            <img src="image5.jpg" alt="Image 5" class="inactive">
+        </div>
         <p>Email: contact@example.com</p>
         <p>电话: +86 18974217026</p>
         <p>地址: 湖南省郴州市北湖区香雪路北一门旁一然零食</p>
@@ -95,6 +122,44 @@
 <footer>
     <p>&copy; 2023 我们的公司. All rights reserved.</p>
 </footer>
+
+<script>
+    function showPage(pageId) {
+        // Hide all sections
+        document.querySelectorAll('#content > section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Show the selected section
+        document.getElementById(pageId).style.display = 'block';
+
+        // Start carousel for the current page
+        startCarousel();
+    }
+
+    function startCarousel() {
+        const carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(carousel => {
+            let currentIndex = 0;
+            const images = carousel.getElementsByTagName('img');
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                images[currentIndex].classList.add('inactive');
+
+                currentIndex = (currentIndex + 1) % images.length;
+
+                images[currentIndex].classList.remove('inactive');
+                images[currentIndex].classList.add('active');
+            }, 3000); // Change image every 3 seconds
+        });
+    }
+
+    // Initialize carousel on page load
+    window.onload = () => {
+        startCarousel();
+    };
+</script>
 
 </body>
 </html>
