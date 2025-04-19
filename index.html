@@ -80,26 +80,32 @@
 
 <header>
     <img src="121.png" alt="qqq" class="company-logo">
-    <h1>欢迎来到我们的零食店</h1>
+    <h1>欢迎来到一然零食店</h1>
 </header>
 
 <nav>
-    <a href="#" onclick="showPage('home')">首页</a>
+    <!-- 导航链接，点击时调用 showPage 函数显示相应页面 -->
+    <a href="#" onclick="showPage('home')">进行中团购</a>
     <a href="#" onclick="showPage('about')">关于我们</a>
     <a href="#" onclick="showPage('contact')">联系我们</a>
 </nav>
 
 <div id="content" class="container">
+    <!-- 首页内容，默认显示 -->
     <section id="home" style="display: block;">
-        <h2>首页</h2>
+        <h2>本期正在进行团购</h2>
         <div class="carousel">
-            <img src="image1.jpg" alt="Image 1" class="active">
-            <img src="image2.jpg" alt="Image 2" class="inactive">
-            <img src="image3.jpg" alt="Image 3" class="inactive">
+            <!-- 轮播图图片，第一张默认显示 -->
+            <img src="ps1.jfif" alt="Image 1" class="active">
+            <img src="ps2.jfif" alt="Image 2" class="inactive">
+            <img src="ps3.jfif" alt="Image 3" class="inactive">
         </div>
         <p>这里是我们的主页，欢迎您访问！</p>
+        <p>快团团跟团传送门</p> <!-- 新增的文字 -->
+    <img src="psQR.jfif" alt="Additional Image" class="additional-image"> <!-- 新增的图片 -->
     </section>
 
+    <!-- 关于我们内容，默认隐藏 -->
     <section id="about" style="display: none;">
         <h2>关于我们</h2>
         <p>我们是一家致力于提供优质服务的企业。</p>
@@ -107,9 +113,11 @@
         <p>我们的团队由一群充满激情和经验丰富的专业人士组成，他们拥有广泛的知识和技能，能够满足您的各种需求。</p>
     </section>
 
+    <!-- 联系我们内容，默认隐藏 -->
     <section id="contact" style="display: none;">
         <h2>联系我们</h2>
         <div class="carousel">
+            <!-- 轮播图图片，第一张默认显示 -->
             <img src="image4.jpg" alt="Image 4" class="active">
             <img src="image5.jpg" alt="Image 5" class="inactive">
         </div>
@@ -124,19 +132,21 @@
 </footer>
 
 <script>
+    // 显示指定 ID 的页面，隐藏其他页面
     function showPage(pageId) {
-        // Hide all sections
+        // 隐藏所有 sections
         document.querySelectorAll('#content > section').forEach(section => {
             section.style.display = 'none';
         });
 
-        // Show the selected section
+        // 显示选中的 section
         document.getElementById(pageId).style.display = 'block';
 
-        // Start carousel for the current page
+        // 启动当前页面的轮播图
         startCarousel();
     }
 
+    // 启动轮播图功能
     function startCarousel() {
         const carousels = document.querySelectorAll('.carousel');
         carousels.forEach(carousel => {
@@ -151,11 +161,11 @@
 
                 images[currentIndex].classList.remove('inactive');
                 images[currentIndex].classList.add('active');
-            }, 3000); // Change image every 3 seconds
+            }, 3000); // 每隔 3 秒切换一张图片
         });
     }
 
-    // Initialize carousel on page load
+    // 页面加载完成后启动轮播图
     window.onload = () => {
         startCarousel();
     };
@@ -163,3 +173,5 @@
 
 </body>
 </html>
+
+
