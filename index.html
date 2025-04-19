@@ -77,7 +77,21 @@
         .additional-image {
             max-width: 100%;
             margin-top: 20px;
+            border: 2px solid red; /* 添加红色边框 */
+            width: 50%; /* 调整图片大小 */
         }
+        /* 添加过渡效果 */
+        <span style="color:red;">
+        #home {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* 隐藏其他页面时应用透明度变化 */
+        section.hidden {
+            opacity: 0;
+        }
+        </span>
     </style>
 </head>
 <body>
@@ -95,18 +109,17 @@
 </nav>
 
 <div id="content" class="container">
-    <!-- 首页内容，默认显示 -->
-    <section id="home" style="display: block;">
-        <h2>本期正在进行团购</h2>
+    <!-- 首页内容，默认隐藏 -->
+    <section id="home" style="display: none;">
+        <h2>达美乐披萨</h2>
         <div class="carousel">
             <!-- 轮播图图片，第一张默认显示 -->
             <img src="ps1.jfif" alt="Image 1" class="active">
             <img src="ps2.jfif" alt="Image 2" class="inactive">
             <img src="ps3.jfif" alt="Image 3" class="inactive">
         </div>
-        <p>这里是我们的主页，欢迎您访问！</p>
-        <p>大萨达所多所多</p> <!-- 新增的文字 -->
-        <img src="additional_image.jpg" alt="Additional Image" class="additional-image"> <!-- 新增的图片 -->
+        <p>快团团跟团传送门</p> <!-- 新增的文字 -->
+        <img src="psQR.jfif" alt="Additional Image" class="additional-image"> <!-- 新增的图片 -->
     </section>
 
     <!-- 关于我们内容，默认隐藏 -->
@@ -140,7 +153,11 @@
     function showPage(pageId) {
         // 隐藏所有 sections
         document.querySelectorAll('#content > section').forEach(section => {
-            section.style.display = 'none';
+            if (section.id === pageId) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
         });
 
         // 显示选中的 section
