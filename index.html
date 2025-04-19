@@ -1,198 +1,323 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们 - 我们的公司</title>
+    <meta charset="UTF-8"> <!-- 设置字符编码为UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 设置视口以适应不同设备 -->
+    <title>欢迎来到一然美食买手店</title> <!-- 设置网页标题 -->
     <style>
+        /* 设置全局字体、背景色和间距 */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif; /* 设置字体为Arial，如果没有则使用sans-serif */
+            margin: 0; /* 去除外边距 */
+            padding: 0; /* 去除外填充 */
+            background-color: #E6F2FF; /* 设置背景颜色 */
         }
+        /* 设置页眉的背景色、文字颜色、居中对齐和内边距 */
         header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
+            background-color: #4CAF50; /* 设置背景颜色 */
+            color: white; /* 设置文字颜色为白色 */
+            text-align: center; /* 文字居中对齐 */
+            padding: 1em 0; /* 设置上下内边距 */
         }
+        /* 设置导航栏的布局方式、背景色和内边距 */
         nav {
-            display: flex;
-            justify-content: space-around;
-            background-color: #333;
-            padding: 0.5em 0;
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-around; /* 子元素在主轴上均匀分布 */
+            background-color: #333; /* 设置背景颜色 */
+            padding: 0.2em 0; /* 设置上下内边距 */
         }
+        /* 设置导航链接的颜色、去除下划线和内边距 */
         nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5em 1em;
+            color: white; /* 设置文字颜色为白色 */
+            text-decoration: none; /* 去除下划线 */
+            padding: 0.5em 1em; /* 设置左右内边距 */
         }
+        /* 设置内容区域的内边距 */
         section {
-            padding: 20px;
+            padding: 20px; /* 设置上下左右内边距 */
         }
+        /* 设置页脚的背景色、文字颜色、居中对齐、内边距和固定位置 */
         footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            background-color: #333; /* 设置背景颜色 */
+            color: white; /* 设置文字颜色为白色 */
+            text-align: center; /* 文字居中对齐 */
+            padding: 1em 0; /* 设置上下内边距 */
+            position: fixed; /* 固定位置 */
+            width: 100%; /* 宽度占满整个屏幕 */
+            bottom: 0; /* 固定在底部 */
         }
+        /* 设置容器的最大宽度、水平居中和内边距 */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 1200px; /* 设置最大宽度 */
+            margin: 0 auto; /* 水平居中 */
+            padding: 20px; /* 设置上下左右内边距 */
         }
+        /* 设置公司标志的最大宽度和底部外边距 */
         .company-logo {
-            max-width: 150px;
-            margin-bottom: 20px;
+            max-width: 150px; /* 设置最大宽度 */
+            margin-bottom: 20px; /* 设置底部外边距 */
         }
+        /* 设置关于我们部分的底部外边距 */
         .about-us {
-            margin-bottom: 40px;
+            margin-bottom: 40px; /* 设置底部外边距 */
         }
+        /* 设置联系我们部分的顶部外边距 */
         .contact-info {
-            margin-top: 40px;
+            margin-top: 40px; /* 设置顶部外边距 */
         }
+        /* 设置轮播图的相对定位、溢出隐藏、宽度和高度 */
         .carousel {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 200px; /* 缩小轮播图的高度 */
+            position: relative; /* 相对定位 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            width: 100%; /* 宽度占满父容器 */
+            height: 200px; /* 设置高度 */
         }
+        /* 设置轮播图图片的宽度、高度、覆盖模式、绝对定位和过渡效果 */
         .carousel img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            transition: opacity 1s ease-in-out;
+            width: 100%; /* 宽度占满父容器 */
+            height: 100%; /* 高度占满父容器 */
+            object-fit: cover; /* 图片覆盖整个容器 */
+            position: absolute; /* 绝对定位 */
+            transition: opacity 1s ease-in-out; /* 设置透明度过渡效果 */
         }
+        /* 设置活动轮播图图片的不透明度 */
         .carousel img.active {
-            opacity: 1;
+            opacity: 1; /* 设置不透明度为1 */
         }
+        /* 设置非活动轮播图图片的不透明度 */
         .carousel img.inactive {
-            opacity: 0;
+            opacity: 0; /* 设置不透明度为0 */
         }
+        /* 设置附加图片的最大宽度、顶部外边距、红色边框和宽度 */
         .additional-image {
-            max-width: 100%;
-            margin-top: 20px;
+            max-width: 100%; /* 设置最大宽度 */
+            margin-top: 20px; /* 设置顶部外边距 */
             border: 2px solid red; /* 添加红色边框 */
-            width: 50%; /* 调整图片大小 */
+            width: 50%; /* 设置宽度 */
         }
-        /* 添加过渡效果 */
-        <span style="color:red;">
+        /* 设置首页的不透明度和过渡效果 */
         #home {
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
+            opacity: 1; /* 设置不透明度为1 */
+            transition: opacity 1s ease-in-out; /* 设置透明度过渡效果 */
         }
-
-        /* 隐藏其他页面时应用透明度变化 */
+        /* 设置隐藏页面的不透明度 */
         section.hidden {
-            opacity: 0;
+            opacity: 0; /* 设置不透明度为0 */
         }
-        </span>
+        /* 设置放大图片时的遮罩层样式 */
+        .overlay {
+            display: none; /* 默认隐藏 */
+            position: fixed; /* 固定位置 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            width: 100%; /* 宽度占满整个屏幕 */
+            height: 100%; /* 高度占满整个屏幕 */
+            background-color: rgba(0, 0, 0, 0.8); /* 设置半透明黑色背景 */
+            z-index: 1000; /* 设置层级 */
+            align-items: center; /* 垂直居中对齐 */
+            justify-content: center; /* 水平居中对齐 */
+        }
+        /* 设置放大图片的样式 */
+        .overlay img {
+            max-width: 90%; /* 设置最大宽度 */
+            max-height: 90%; /* 设置最大高度 */
+            cursor: grab; /* 设置鼠标指针为抓取图标 */
+        }
+        /* 设置正在拖拽时的鼠标指针样式 */
+        .overlay img.grabbing {
+            cursor: grabbing; /* 设置鼠标指针为正在抓取图标 */
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="121.png" alt="qqq" class="company-logo">
-    <h1>欢迎来到我们的零食店</h1>
+    <img src="121.png" alt="qqq" class="company-logo"> <!-- 公司标志图片 -->
+    <h1>欢迎来到我们的零食店</h1> <!-- 网页标题 -->
 </header>
 
 <nav>
     <!-- 导航链接，点击时调用 showPage 函数显示相应页面 -->
-    <a href="#" onclick="showPage('home')">首页</a>
-    <a href="#" onclick="showPage('about')">关于我们</a>
-    <a href="#" onclick="showPage('contact')">联系我们</a>
+    <a href="#" onclick="showPage('home')">首页</a> <!-- 首页链接 -->
+    <a href="#" onclick="showPage('about')">关于我们</a> <!-- 关于我们链接 -->
+    <a href="#" onclick="showPage('contact')">联系我们</a> <!-- 联系我们链接 -->
 </nav>
 
 <div id="content" class="container">
     <!-- 首页内容，默认隐藏 -->
     <section id="home" style="display: none;">
-        <h2>达美乐披萨</h2>
+        <h2>达美乐披萨</h2> <!-- 小标题 -->
         <div class="carousel">
             <!-- 轮播图图片，第一张默认显示 -->
-            <img src="ps1.jfif" alt="Image 1" class="active">
-            <img src="ps2.jfif" alt="Image 2" class="inactive">
-            <img src="ps3.jfif" alt="Image 3" class="inactive">
+            <img src="ps1.jfif" alt="Image 1" class="active" data-qrcode="https://example.com/qrcode1"> <!-- 第一张图片 -->
+            <img src="ps2.jfif" alt="Image 2" class="inactive" data-qrcode="https://example.com/qrcode2"> <!-- 第二张图片 -->
+            <img src="ps3.jfif" alt="Image 3" class="inactive" data-qrcode="https://example.com/qrcode3"> <!-- 第三张图片 -->
         </div>
         <p>快团团跟团传送门</p> <!-- 新增的文字 -->
-        <img src="psQR.jfif" alt="Additional Image" class="additional-image"> <!-- 新增的图片 -->
+        <img src="psQR.jfif" alt="Additional Image" class="additional-image" data-qrcode="https://example.com/additionalQR"> <!-- 新增的图片 -->
     </section>
 
     <!-- 关于我们内容，默认隐藏 -->
     <section id="about" style="display: none;">
-        <h2>关于我们</h2>
-        <p>我们是一家致力于提供优质服务的企业。</p>
-        <p>自成立以来，我们一直秉承着“客户至上”的原则，努力为您提供最优质的产品和服务。</p>
-        <p>我们的团队由一群充满激情和经验丰富的专业人士组成，他们拥有广泛的知识和技能，能够满足您的各种需求。</p>
+        <h2>关于我们</h2> <!-- 小标题 -->
+        <p>我们是一家致力于提供优质服务的企业。</p> <!-- 内容段落 -->
+        <p>自成立以来，我们一直秉承着“客户至上”的原则，努力为您提供最优质的产品和服务。</p> <!-- 内容段落 -->
+        <p>我们的团队由一群充满激情和经验丰富的专业人士组成，他们拥有广泛的知识和技能，能够满足您的各种需求。</p> <!-- 内容段落 -->
     </section>
 
     <!-- 联系我们内容，默认隐藏 -->
     <section id="contact" style="display: none;">
-        <h2>联系我们</h2>
+        <h2>联系我们</h2> <!-- 小标题 -->
         <div class="carousel">
             <!-- 轮播图图片，第一张默认显示 -->
-            <img src="image4.jpg" alt="Image 4" class="active">
-            <img src="image5.jpg" alt="Image 5" class="inactive">
+            <img src="image4.jpg" alt="Image 4" class="active" data-qrcode="https://example.com/contactQR1"> <!-- 第一张图片 -->
+            <img src="image5.jpg" alt="Image 5" class="inactive" data-qrcode="https://example.com/contactQR2"> <!-- 第二张图片 -->
         </div>
-        <p>Email: contact@example.com</p>
-        <p>电话: +86 18974217026</p>
-        <p>地址: 湖南省郴州市北湖区香雪路北一门旁一然零食</p>
+        <p>Email: contact@example.com</p> <!-- 邮箱地址 -->
+        <p>电话: +86 18974217026</p> <!-- 电话号码 -->
+        <p>地址: 湖南省郴州市北湖区香雪路北一门旁一然零食</p> <!-- 地址信息 -->
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2023 我们的公司. All rights reserved.</p>
+    <p>&copy; 2023 我们的公司. All rights reserved.</p> <!-- 版权信息 -->
 </footer>
+
+<!-- 放大图片的遮罩层 -->
+<div class="overlay" id="overlay">
+    <img id="overlayImage" src="" alt="Enlarged Image"> <!-- 放大的图片 -->
+</div>
 
 <script>
     // 显示指定 ID 的页面，隐藏其他页面
     function showPage(pageId) {
-        // 隐藏所有 sections
-        document.querySelectorAll('#content > section').forEach(section => {
-            if (section.id === pageId) {
-                section.classList.remove('hidden');
+        document.querySelectorAll('#content > section').forEach(section => { // 获取所有section元素
+            if (section.id === pageId) { // 如果section的id与pageId匹配
+                section.classList.remove('hidden'); // 移除hidden类
             } else {
-                section.classList.add('hidden');
+                section.classList.add('hidden'); // 添加hidden类
             }
         });
 
-        // 显示选中的 section
-        document.getElementById(pageId).style.display = 'block';
+        document.getElementById(pageId).style.display = 'block'; // 显示指定的section
 
         // 启动当前页面的轮播图
-        startCarousel();
+        startCarousel(); // 调用startCarousel函数启动轮播图
     }
 
     // 启动轮播图功能
     function startCarousel() {
-        const carousels = document.querySelectorAll('.carousel');
-        carousels.forEach(carousel => {
-            let currentIndex = 0;
-            const images = carousel.getElementsByTagName('img');
+        const carousels = document.querySelectorAll('.carousel'); // 获取所有carousel元素
+        carousels.forEach(carousel => { // 遍历每个carousel
+            let currentIndex = 0; // 初始化索引为0
+            const images = carousel.getElementsByTagName('img'); // 获取carousel中的所有图片
 
-            setInterval(() => {
-                images[currentIndex].classList.remove('active');
-                images[currentIndex].classList.add('inactive');
+            setInterval(() => { // 设置定时器每秒执行一次
+                images[currentIndex].classList.remove('active'); // 移除当前图片的active类
+                images[currentIndex].classList.add('inactive'); // 添加当前图片的inactive类
 
-                currentIndex = (currentIndex + 1) % images.length;
+                currentIndex = (currentIndex + 1) % images.length; // 更新索引到下一个图片
 
-                images[currentIndex].classList.remove('inactive');
-                images[currentIndex].classList.add('active');
-            }, 1000); // 每隔 1 秒切换一张图片
+                images[currentIndex].classList.remove('inactive'); // 移除新图片的inactive类
+                images[currentIndex].classList.add('active'); // 添加新图片的active类
+            }, 1000); // 每隔1秒切换一张图片
         });
     }
 
     // 页面加载完成后启动轮播图
     window.onload = () => {
-        startCarousel();
+        startCarousel(); // 调用startCarousel函数启动轮播图
     };
+
+    // 放大图片并启用拖拽功能
+    document.addEventListener('click', (event) => { // 监听点击事件
+        const target = event.target; // 获取点击的目标元素
+        if (target.tagName === 'IMG') { // 如果目标元素是图片
+            const overlay = document.getElementById('overlay'); // 获取遮罩层元素
+            const overlayImage = document.getElementById('overlayImage'); // 获取放大的图片元素
+            overlayImage.src = target.src; // 设置放大的图片源
+            overlay.style.display = 'flex'; // 显示遮罩层
+            enableDragAndDrop(overlayImage); // 启用拖拽功能
+        }
+    });
+
+    // 点击遮罩层关闭放大图片
+    document.getElementById('overlay').addEventListener('click', (event) => { // 监听遮罩层点击事件
+        if (event.target.id === 'overlay') { // 如果点击的是遮罩层本身
+            event.target.style.display = 'none'; // 隐藏遮罩层
+        }
+    });
+
+    // 阻止点击事件冒泡到遮罩层
+    document.getElementById('overlayImage').addEventListener('click', (event) => { // 监听放大的图片点击事件
+        event.stopPropagation(); // 阻止事件冒泡
+    });
+
+    // 启用手势支持（触摸屏）
+    document.addEventListener('touchstart', (event) => { // 监听触摸开始事件
+        const target = event.target; // 获取触摸的目标元素
+        if (target.tagName === 'IMG' && !target.classList.contains('additional-image')) { // 如果目标元素是图片且不是附加图片
+            longPressTimer = setTimeout(() => { // 设置长按计时器
+                const qrcodeUrl = target.getAttribute('data-qrcode'); // 获取二维码URL
+                if (qrcodeUrl) { // 如果存在二维码URL
+                    window.location.href = qrcodeUrl; // 跳转到二维码URL
+                }
+            }, 1000); // 长按时间设置为1秒
+        }
+    });
+
+    document.addEventListener('touchend', () => { // 监听触摸结束事件
+        clearTimeout(longPressTimer); // 清除长按计时器
+    });
+
+    let startX, startY, isDragging = false; // 初始化变量
+
+    function enableDragAndDrop(image) { // 启用拖拽功能
+        image.addEventListener('mousedown', (e) => { // 监听鼠标按下事件
+            startX = e.clientX - image.offsetLeft; // 计算初始X偏移量
+            startY = e.clientY - image.offsetTop; // 计算初始Y偏移量
+            isDragging = true; // 设置拖拽状态为true
+            image.classList.add('grabbing'); // 添加grabbing类
+        });
+
+        image.addEventListener('mousemove', (e) => { // 监听鼠标移动事件
+            if (!isDragging) return; // 如果不在拖拽状态，返回
+            e.preventDefault(); // 阻止默认行为
+            image.style.left = `${e.clientX - startX}px`; // 更新图片的left值
+            image.style.top = `${e.clientY - startY}px`; // 更新图片的top值
+        });
+
+        image.addEventListener('mouseup', () => { // 监听鼠标释放事件
+            isDragging = false; // 设置拖拽状态为false
+            image.classList.remove('grabbing'); // 移除grabbing类
+        });
+
+        image.addEventListener('mouseleave', () => { // 监听鼠标离开事件
+            isDragging = false; // 设置拖拽状态为false
+            image.classList.remove('grabbing'); // 移除grabbing类
+        });
+
+        image.addEventListener('touchstart', (e) => { // 监听触摸开始事件
+            startX = e.touches[0].clientX - image.offsetLeft; // 计算初始X偏移量
+            startY = e.touches[0].clientY - image.offsetTop; // 计算初始Y偏移量
+            isDragging = true; // 设置拖拽状态为true
+            image.classList.add('grabbing'); // 添加grabbing类
+        });
+
+        image.addEventListener('touchmove', (e) => { // 监听触摸移动事件
+            if (!isDragging) return; // 如果不在拖拽状态，返回
+            e.preventDefault(); // 阻止默认行为
+            image.style.left = `${e.touches[0].clientX - startX}px`; // 更新图片的left值
+            image.style.top = `${e.touches[0].clientY - startY}px`; // 更新图片的top值
+        });
+
+        image.addEventListener('touchend', () => { // 监听触摸结束事件
+            isDragging = false; // 设置拖拽状态为false
+            image.classList.remove('grabbing'); // 移除grabbing类
+        });
+    }
 </script>
 
 </body>
 </html>
-
 
